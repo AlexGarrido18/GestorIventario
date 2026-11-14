@@ -26,7 +26,7 @@ public class Objeto {
     //Para modificar la cantidad
     public void setCantidad(Integer cantidad){
         this.cantidad = cantidad;    }
-    //ToString
+    //toString sirve para que cuando te saque el syso por consola la lista salga bonito
     @Override
     public String toString(){
         return String.format("[%s ,%d]", nombre, cantidad);
