@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class gestorIventario {
     static List<Objeto> inventario = new ArrayList<>();
 
+    static List<Objeto> inventario = new ArrayList<>();
     public static void main(String[] args) {
         arranque();
         consultarDatos();
