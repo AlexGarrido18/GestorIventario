@@ -73,8 +73,8 @@ public class gestorIventario{
                                 // si existe devolvemos los datos
                                 System.out.println("Introduzca nueva cantidad");
                                 Integer cantidad=sc.nextInt();
-                                objeto.setCantidad(cantidad);
-                                System.out.println(objeto.getNombre() + " cantidad: " + objeto.getCantidad());
+                                objeto.setCantidad(cantidad); //seteamos la nueva cantidad
+                                System.out.println(objeto.getNombre() + " cantidad: " + objeto.getCantidad()); //le muestra al usuario la nueva cantidad introducidad
                                 break;
                             }
                         }
