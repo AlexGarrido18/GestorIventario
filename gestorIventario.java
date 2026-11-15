@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class gestorIventario {
+public class gestorIventario{
     
     static List<Objeto> inventario = new ArrayList<>();
-    public static void main(String[] args) {
+    static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws ProductoNoEncontrado{
         arranque();
-        consultarDatos();
         // login();
         // menu();
     }
@@ -22,7 +22,6 @@ public class gestorIventario {
     }
 
     public static void consultarDatos() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Que desea consultar?\n 1.Inventario\n 2.Objeto en especifico");
         int opcion = sc.nextInt();
         try {
@@ -47,10 +46,11 @@ public class gestorIventario {
                     if (!existe) { // si no existe no devolvemos los datos
                         throw new ProductoNoEncontrado("Este producto no existe");
                     }
+                    
                     break;
                 default:
                     throw new IllegalArgumentException("Introduzca una opción válida");
-
+            
             }
 
         } catch (IllegalArgumentException e) {
@@ -59,6 +59,32 @@ public class gestorIventario {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public static void modificarExistencias(){
+        try {
+            System.out.println("Que desea modificar");
+            String nombre=sc.next();
+            boolean existe = false; // ponemos por defecto que el objeto no existe
+                        for (Objeto objeto : inventario) { // bucle for que busca dentro del inventario que tenemos guardado
+                            if (nombre.equalsIgnoreCase(objeto.getNombre())) {// condicional si el objeto existe cambiamos a
+                                                                              // // true
+                                existe = true;
+                                // si existe devolvemos los datos
+                                System.out.println("Introduzca nueva cantidad");
+                                Integer cantidad=sc.nextInt();
+                                objeto.setCantidad(cantidad);
+                                System.out.println(objeto.getNombre() + " cantidad: " + objeto.getCantidad());
+                                break;
+                            }
+                        }
+                        if (!existe) { // si no existe no devolvemos los datos
+                            throw new ProductoNoEncontrado("Este producto no existe");
+                        }
+
+        } catch (ProductoNoEncontrado e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
 class ProductoNoEncontrado extends Exception {
