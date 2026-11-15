@@ -8,7 +8,7 @@ public class gestorIventario{
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) throws ProductoNoEncontrado{
         arranque();
-        // login();
+        login();
         // menu();
     }
 
@@ -20,6 +20,30 @@ public class gestorIventario{
         o1 = new Objeto("Martillos", 5);
         inventario.add(o1);
     }
+
+private static void login() {
+        boolean acceso=false;
+
+        System.out.println("Bienvenidos a Leroy Merlin, ");
+
+        do {
+            System.out.print("Para iniciar el programa pulse `enter´: ");
+            String inicio = sc.nextLine();
+            
+            if (inicio.equals("")) {
+                System.out.println("-> Acceso Permitido");
+                acceso = true;
+            } else {
+                System.out.println("-> Acceso Denegado");
+                
+
+            }
+        } while (acceso == false);
+    }
+
+
+
+
 
     public static void consultarDatos() {
         System.out.println("Que desea consultar?\n 1.Inventario\n 2.Objeto en especifico");
