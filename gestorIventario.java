@@ -3,8 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class gestorIventario {
-    static List<Objeto> inventario = new ArrayList<>();
-
+    
     static List<Objeto> inventario = new ArrayList<>();
     public static void main(String[] args) {
         arranque();
@@ -62,8 +61,7 @@ public class gestorIventario {
 
     }
 }
-
- class ProductoNoEncontrado extends Exception {
+class ProductoNoEncontrado extends Exception {
     public ProductoNoEncontrado(String mensaje) {
         super(mensaje);
     }
