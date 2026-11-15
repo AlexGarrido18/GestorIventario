@@ -10,7 +10,9 @@ public class gestorIventario {
     public static void main(String[] args) throws ProductoNoEncontrado {
         arranque();
         login();
-        // menu();
+        registroProductos();
+        consultarDatos();
+        
     }
 
     private static void arranque() {
@@ -112,40 +114,39 @@ public class gestorIventario {
 
     public static void registroProductos() {
         Scanner sc = new Scanner(System.in);
-        
+
         boolean salir;
-        
+
         do {
-           try {
-            System.out.print("Indique el nombre del producto que desea registrar: ");
-            String nombreProducto = sc.next();
-            System.out.print("Ingrese la cantidad del producto que va a ingresar: ");
-            int cantidadProducto = sc.nextInt();
+            try {
+                System.out.print("Indique el nombre del producto que desea registrar: ");
+                String nombreProducto = sc.next();
+                System.out.print("Ingrese la cantidad del producto que va a ingresar: ");
+                int cantidadProducto = sc.nextInt();
 
-            if (nombreProducto.equals("") || cantidadProducto == 0) {
-                throw new InformacionNoValida("Datos introducidos no válidos");
-            } else {
-                Objeto o1 = new Objeto(nombreProducto, cantidadProducto);
-                inventario.add(o1);
-                
-            }
-            System.out.println("¿Desea registar otro producto?");
-            System.out.println("Introduzca `1´ para continuar");
-            System.out.println("Introduzca `2´ para salir");
-            int continua=sc.nextInt();
-            
-            if(continua==1){
-                salir=false;
-            }else{
-                salir=true;
+                if (nombreProducto.equals("") || cantidadProducto == 0 || cantidadProducto<0) {
+                    throw new InformacionNoValida("Datos introducidos no válidos");
+                } else {
+                    Objeto nuevoProducto = new Objeto(nombreProducto, cantidadProducto);
+                    inventario.add(nuevoProducto);
+
+                }
+                System.out.println("¿Desea registar otro producto?");
+                System.out.println("Introduzca `1´ para continuar");
+                System.out.println("Introduzca `2´ para salir");
+                int continua = sc.nextInt();
+
+                if (continua == 1) {
+                    salir = false;
+                } else {
+                    salir = true;
+                }
+
+            } catch (InformacionNoValida e) {
+                System.out.println(e.getMessage());
             }
 
-        } catch (InformacionNoValida e) {
-            System.out.println(e.getMessage());
-        }
-             
-        } while (salir=false);        
-        
+        } while (salir = false);
 
     }
 }
