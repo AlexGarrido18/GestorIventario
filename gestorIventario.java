@@ -10,9 +10,63 @@ public class gestorIventario {
     public static void main(String[] args) throws ProductoNoEncontrado {
         arranque();
         login();
+        menu();
         registroProductos();
         consultarDatos();
-        
+
+    }
+
+    public static void menu() {
+        boolean continuar;
+
+        System.out.println("Bienvenido al programa `Leroy Merlin´");
+        try {
+            while (continuar = false) {
+
+                System.out.println("A continuación, ¿Que desea realizar?");
+                System.out.println("1. Registrar un producto.");
+                System.out.println("2. Consultar datos existentes.");
+                System.out.println("3. Modificar existencias.");
+                System.out.println("4. Mostrar información del inventario.");
+                System.out.print("Marque la opción que desee (1-4) -> ");
+                int opcion = sc.nextInt();
+
+                switch (opcion) {
+                    case 1:
+                        registroProductos();
+                        break;
+                    case 2:
+                        consultarDatos();
+                        break;
+                    case 3:
+                        modificarExistencias();
+                        break;
+                    case 4:
+                        infoCompletaInventario();
+                        break;
+                    default:
+                        throw new OpcionNoValida("La opcion introducida no es válidos");
+                }
+                System.out.println("¿Desea realizar una nueva acción? (si/no)");
+                String nuevaAccion = sc.next().toLowerCase();
+
+                switch (nuevaAccion) {
+                   case "si","sí":
+                    continuar=true;
+                    break;
+                    case "no":
+                        continuar=false;
+                        default:
+                           throw new ErrorContinuar("Valor introducido no válido"); 
+
+                }
+            }
+        } catch (OpcionNoValida e) {
+            System.out.println(e.getMessage());
+        }catch (ErrorContinuar e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private static void arranque() {
@@ -124,7 +178,7 @@ public class gestorIventario {
                 System.out.print("Ingrese la cantidad del producto que va a ingresar: ");
                 int cantidadProducto = sc.nextInt();
 
-                if (nombreProducto.equals("") || cantidadProducto == 0 || cantidadProducto<0) {
+                if (nombreProducto.equals("") || cantidadProducto == 0 || cantidadProducto < 0) {
                     throw new InformacionNoValida("Datos introducidos no válidos");
                 } else {
                     Objeto nuevoProducto = new Objeto(nombreProducto, cantidadProducto);
@@ -149,6 +203,14 @@ public class gestorIventario {
         } while (salir = false);
 
     }
+
+    public static void infoCompletaInventario() {
+        System.out.println("Ha seleccionado`Mostrar Información del Inventario´.");
+        System.out.println("A continuación le apareceran las existencias totales del inventario.");
+
+        System.out.println("Existencias Totales -> " + inventario);
+    }
+
 }
 
 class ProductoNoEncontrado extends Exception {
@@ -160,6 +222,18 @@ class ProductoNoEncontrado extends Exception {
 
 class InformacionNoValida extends Exception {
     public InformacionNoValida(String mensaje) {
+        super(mensaje);
+    }
+
+}
+
+class OpcionNoValida extends Exception {
+    public OpcionNoValida(String mensaje) {
+        super(mensaje);
+    }
+}
+    class ErrorContinuar extends Exception {
+    public ErrorContinuar(String mensaje) {
         super(mensaje);
     }
 
