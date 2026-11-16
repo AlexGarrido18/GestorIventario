@@ -11,17 +11,15 @@ public class gestorIventario {
         arranque();
         login();
         menu();
-        registroProductos();
-        consultarDatos();
 
     }
 
     public static void menu() {
-        boolean continuar;
+        boolean continuar=true;
 
         System.out.println("Bienvenido al programa `Leroy Merlin´");
         try {
-            while (continuar = false) {
+         while (continuar) {
 
                 System.out.println("A continuación, ¿Que desea realizar?");
                 System.out.println("1. Registrar un producto.");
