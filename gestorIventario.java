@@ -54,6 +54,7 @@ public class gestorIventario {
                     break;
                     case "no":
                         continuar=false;
+                        break;
                         default:
                            throw new ErrorContinuar("Valor introducido no válido"); 
 
